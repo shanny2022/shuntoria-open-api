@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marvel Open API Project</title>
-  <link rel="stylesheet" href="css/index.css" />
-</head>
 <body>
-  <h1>Marvel Open API Project</h1>
-  <p>Open the console to see the Marvel API response.</p>
+  <h1>Star Wars Open API Project</h1>
+  <p>Open the console to see the Star Wars API response, and look below for data on the page.</p>
+
+  <!-- Character section -->
+  <section id="character-section">
+    <h2>Main Character</h2>
+    <!-- We will inject character info into this div -->
+    <div id="character-result"></div>
+  </section>
+
+  <!-- Film section -->
+  <section id="film-section">
+    <h2>Film Information</h2>
+    <button id="load-film">Load Film</button>
+    <!-- We will inject film info into this div -->
+    <div id="film-result"></div>
+  </section>
 
   <script src="js/index.js"></script>
 </body>
-</html>
