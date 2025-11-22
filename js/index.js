@@ -1,31 +1,26 @@
-// First data point: Star Wars character (Luke Skywalker)
+// endpoint for the Star Wars character Luke Skywalker
 const characterUrl = "https://www.swapi.tech/api/people/1";
 
-// Get references to the HTML elements we created in index.html
+// grab references to HTML elements
 const characterContainer = document.getElementById("character-result");
 const filmButton = document.getElementById("load-film");
 const filmContainer = document.getElementById("film-result");
+const navCharacter = document.getElementById("nav-character");
+const navFilm = document.getElementById("nav-film");
 
-// Function to fetch and display the character
+// fetch and display character data
 function loadCharacter() {
+  characterContainer.innerHTML = "Loading character...";
   fetch(characterUrl)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-      console.log("SWAPI character response:", data);
-
-      // Get the properties object where the real data lives
       const person = data.result.properties;
 
-      // Clear anything currently in the container
       characterContainer.innerHTML = "";
 
-      // Create a card div to hold the info
       const card = document.createElement("div");
       card.classList.add("card");
 
-      // Create elements for the character name and details
       const nameHeading = document.createElement("h3");
       nameHeading.innerText = person.name;
 
@@ -38,11 +33,19 @@ function loadCharacter() {
         " kg | Birth year: " +
         person.birth_year;
 
-      // Add the elements into the card
+      const extraParagraph = document.createElement("p");
+      extraParagraph.innerText =
+        "Eye color: " +
+        person.eye_color +
+        " | Hair color: " +
+        person.hair_color +
+        " | Gender: " +
+        person.gender;
+
       card.appendChild(nameHeading);
       card.appendChild(detailsParagraph);
+      card.appendChild(extraParagraph);
 
-      // Add the card into the character container on the page
       characterContainer.appendChild(card);
     })
     .catch((error) => {
@@ -51,23 +54,18 @@ function loadCharacter() {
     });
 }
 
-// Second data point: Star Wars film (we will load this when the button is clicked)
+// fetch and display film data
 function loadFilm() {
   const filmUrl = "https://www.swapi.tech/api/films/1";
 
+  filmContainer.innerHTML = "Loading film...";
   fetch(filmUrl)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
-      console.log("SWAPI film response:", data);
-
       const film = data.result.properties;
 
-      // Clear old film content
       filmContainer.innerHTML = "";
 
-      // Create a card for the film info
       const card = document.createElement("div");
       card.classList.add("card");
 
@@ -84,12 +82,10 @@ function loadFilm() {
       const openingParagraph = document.createElement("p");
       openingParagraph.innerText = film.opening_crawl;
 
-      // Add elements into the film card
       card.appendChild(titleHeading);
       card.appendChild(metaParagraph);
       card.appendChild(openingParagraph);
 
-      // Add the card to the film container
       filmContainer.appendChild(card);
     })
     .catch((error) => {
@@ -98,10 +94,36 @@ function loadFilm() {
     });
 }
 
-// When the page loads, immediately show the character data
+// run when page first loads
 loadCharacter();
 
-// When the user clicks the button, load film data
+// button navigation for film section
 if (filmButton) {
-  filmButton.addEventListener("click", loadFilm);
+  filmButton.addEventListener("click", () => {
+    loadFilm();
+    document
+      .getElementById("film-section")
+      .scrollIntoView({ behavior: "smooth" });
+  });
+}
+
+// header navigation links
+if (navCharacter) {
+  navCharacter.addEventListener("click", (event) => {
+    event.preventDefault();
+    loadCharacter();
+    document
+      .getElementById("character-section")
+      .scrollIntoView({ behavior: "smooth" });
+  });
+}
+
+if (navFilm) {
+  navFilm.addEventListener("click", (event) => {
+    event.preventDefault();
+    loadFilm();
+    document
+      .getElementById("film-section")
+      .scrollIntoView({ behavior: "smooth" });
+  });
 }

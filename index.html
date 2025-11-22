@@ -1,21 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Wars Open API Project</title>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
 <body>
-  <h1>Star Wars Open API Project</h1>
-  <p>Open the console to see the Star Wars API response, and look below for data on the page.</p>
+  <header>
+    <div class="header-inner">
+      <h1>Star Wars Open API Project</h1>
+      <nav>
+        <a href="#" id="nav-character">Character</a>
+        <a href="#" id="nav-film">Film</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Character section -->
-  <section id="character-section">
-    <h2>Main Character</h2>
-    <!-- We will inject character info into this div -->
-    <div id="character-result"></div>
-  </section>
+  <main>
+    <section id="intro">
+      <p>
+        This page uses the Star Wars API (swapi.tech) to fetch data about a character and a film.
+        Clicking Character or Film in the navigation sends a new GET request to the appropriate endpoint
+        and displays the results below.
+      </p>
+    </section>
 
-  <!-- Film section -->
-  <section id="film-section">
-    <h2>Film Information</h2>
-    <button id="load-film">Load Film</button>
-    <!-- We will inject film info into this div -->
-    <div id="film-result"></div>
-  </section>
+    <section id="character-section">
+      <h2>Main Character</h2>
+      <p class="section-description">
+        This section shows data from the people endpoint. The example here is Luke Skywalker.
+      </p>
+      <div id="character-result"></div>
+    </section>
+
+    <section id="film-section">
+      <h2>Film Information</h2>
+      <p class="section-description">
+        This section shows data from the films endpoint. Use the button or the Film navigation link
+        to load the movie details.
+      </p>
+      <button id="load-film">Load Film</button>
+      <div id="film-result"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Project by Shuntoria Reid using the Star Wars API (swapi.tech)</p>
+  </footer>
 
   <script src="js/index.js"></script>
 </body>
+</html>
